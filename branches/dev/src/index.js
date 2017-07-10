@@ -75,19 +75,13 @@ var sideModeHandlers = Alexa.CreateStateHandler(states.SIDEMODE, {
     'NewSession': function() {
         this.emit('NewSession'); // Uses the handler in newSessionHandlers
     },
-    'ChooseSide': function() {
-        var side = this.event.request.intent.slots.side.value;
-        if (side == 'ping' || side == 'pong') {
-            this.attributes["side"] = side;
-            this.handler.state = states.PLAYMODE;
-            if (side == 'ping') {
-                this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PONG);
-            } else {
-                this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PING);
-            }
-        } else {
-            this.emit(':ask', lang.CHOOSE_A_SIDE_CHOICES, lang.CHOOSE_A_SIDE_CHOICES);
-        }
+    'ChoosePing': function() {
+    	this.attributes["side"] = 'ping';
+        this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PONG);
+    },
+    'ChoosePong': function() {
+    	this.attributes["side"] = 'pong';
+        this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PING);
     },
     'AMAZON.HelpIntent': function() {
         this.emit(':ask', lang.HELP + " " + lang.CHOOSE_A_SIDE, lang.CHOOSE_A_SIDE_CHOICES);
@@ -108,19 +102,23 @@ var playModeHandlers = Alexa.CreateStateHandler(states.PLAYMODE, {
     'NewSession': function() {
         this.emit('NewSession'); // Uses the handler in newSessionHandlers
     },
-    'ChooseSide': function() {
-        var side = this.attributes["side"];
-        var swing = this.event.request.intent.slots.side.value;
-        if (side != swing) {
-            this.handler.state = states.ENDMODE;
+    'ChoosePing': function() {
+    	var side = this.attributes["side"];
+    	if (side != 'ping') {
+			this.handler.state = states.ENDMODE;
             this.emit(':ask', lang.ALEXA_WINS + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
-        } else {
-            if (side == 'ping') {
-                this.emit(':ask', lang.PONG);
-            } else {
-                this.emit(':ask', lang.PING);
-            }
-        }
+    	} else {
+			this.emit(':ask', lang.PONG);
+    	}
+    },
+    'ChoosePong': function() {
+    	var side = this.attributes["side"];
+    	if (side != 'pong') {
+			this.handler.state = states.ENDMODE;
+            this.emit(':ask', lang.ALEXA_WINS + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
+    	} else {
+			this.emit(':ask', lang.PING);
+    	}
     },
     "AMAZON.StopIntent": function() {
         this.emit(':tell', lang.BYE);
