@@ -26,7 +26,7 @@ var lang = {
     PING: 'Ping!',
     PONG: 'Pong!',
     ALEXA_WINS: 'Nice try!',
-    SCORE: 'You hit the ball {SCORE} times.',
+    SCORE: 'You hit the ball {SCORE}.',
     PLAY_AGAIN: 'Do you want to play again?',
     PLAY_AGAIN_CHOICES: 'Say yes to play again, or no to quit.',
     BYE: 'Alright, I\'m down for a challenge anytime.'
@@ -111,7 +111,13 @@ var playModeHandlers = Alexa.CreateStateHandler(states.PLAYMODE, {
         var side = this.attributes["side"];
         if (side != 'ping') {
             this.handler.state = states.ENDMODE;
-            var scoreSpeech = lang.SCORE.replace("{SCORE}", this.attributes["swings"]);
+            var swings = this.attributes["swings"];
+            if (swings == 1) {
+                swings += " time";
+            } else {
+                swings += " times";
+            }
+            var scoreSpeech = lang.SCORE.replace("{SCORE}", swings);
             this.emit(':ask', lang.ALEXA_WINS + " " + scoreSpeech + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
         } else {
             this.attributes["swings"] = this.attributes["swings"] + 1;
@@ -122,7 +128,13 @@ var playModeHandlers = Alexa.CreateStateHandler(states.PLAYMODE, {
         var side = this.attributes["side"];
         if (side != 'pong') {
             this.handler.state = states.ENDMODE;
-            var scoreSpeech = lang.SCORE.replace("{SCORE}", this.attributes["swings"]);
+            var swings = this.attributes["swings"];
+            if (swings == 1) {
+                swings += " time";
+            } else {
+                swings += " times";
+            }
+            var scoreSpeech = lang.SCORE.replace("{SCORE}", swings);
             this.emit(':ask', lang.ALEXA_WINS + " " + scoreSpeech + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
         } else {
             this.attributes["swings"] = this.attributes["swings"] + 1;
@@ -138,7 +150,13 @@ var playModeHandlers = Alexa.CreateStateHandler(states.PLAYMODE, {
     },
     'Unhandled': function() {
         this.handler.state = states.ENDMODE;
-        var scoreSpeech = lang.SCORE.replace("{SCORE}", this.attributes["swings"]);
+        var swings = this.attributes["swings"];
+        if (swings == 1) {
+            swings += " time";
+        } else {
+            swings += " times";
+        }
+        var scoreSpeech = lang.SCORE.replace("{SCORE}", swings);
         this.emit(':ask', lang.ALEXA_WINS + " " + scoreSpeech + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
     }
 });
