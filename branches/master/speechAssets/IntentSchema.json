@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "intent": "ChooseSide",
+      "slots": [
+        {
+          "name": "side",
+          "type": "SIDE_CHOICE"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    }
+  ]
+}

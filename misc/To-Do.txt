@@ -1,0 +1,7 @@
+fix pronunciations
+add app ID
+create app icon
+random chance for you to win?
+test if not saying anything works
+review all language
+review all intents

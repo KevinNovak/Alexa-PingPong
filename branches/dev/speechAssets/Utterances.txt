@@ -1,0 +1,97 @@
+ChoosePing ping
+ChoosePing bing
+ChoosePing ding
+ChoosePing king
+ChoosePing ring
+ChoosePing sing
+ChoosePing wing
+ChoosePing I choose ping
+ChoosePing I choose bing
+ChoosePing I choose ding
+ChoosePing I choose king
+ChoosePing I choose ring
+ChoosePing I choose sing
+ChoosePing I choose wing
+ChoosePing I pick ping
+ChoosePing I pick bing
+ChoosePing I pick ding
+ChoosePing I pick king
+ChoosePing I pick ring
+ChoosePing I pick sing
+ChoosePing I pick wing
+ChoosePing I want to be ping
+ChoosePing I want to be bing
+ChoosePing I want to be ding
+ChoosePing I want to be king
+ChoosePing I want to be ring
+ChoosePing I want to be sing
+ChoosePing I want to be wing
+ChoosePing I'll be ping
+ChoosePing I'll be bing
+ChoosePing I'll be ding
+ChoosePing I'll be king
+ChoosePing I'll be ring
+ChoosePing I'll be sing
+ChoosePing I'll be wing
+ChoosePing I want ping
+ChoosePing I want bing
+ChoosePing I want ding
+ChoosePing I want king
+ChoosePing I want ring
+ChoosePing I want sing
+ChoosePing I want wing
+
+ChoosePong pong
+ChoosePong bong
+ChoosePong dong
+ChoosePong hong
+ChoosePong gong
+ChoosePong song
+ChoosePong long
+ChoosePong strong
+ChoosePong wong
+ChoosePong I choose pong
+ChoosePong I choose bong
+ChoosePong I choose dong
+ChoosePong I choose hong
+ChoosePong I choose gong
+ChoosePong I choose song
+ChoosePong I choose long
+ChoosePong I choose strong
+ChoosePong I choose wong
+ChoosePong I pick pong
+ChoosePong I pick bong
+ChoosePong I pick dong
+ChoosePong I pick hong
+ChoosePong I pick gong
+ChoosePong I pick song
+ChoosePong I pick long
+ChoosePong I pick strong
+ChoosePong I pick wong
+ChoosePong I want to be pong
+ChoosePong I want to be bong
+ChoosePong I want to be dong
+ChoosePong I want to be hong
+ChoosePong I want to be gong
+ChoosePong I want to be song
+ChoosePong I want to be long
+ChoosePong I want to be strong
+ChoosePong I want to be wong
+ChoosePong I'll be pong
+ChoosePong I'll be bong
+ChoosePong I'll be dong
+ChoosePong I'll be hong
+ChoosePong I'll be gong
+ChoosePong I'll be song
+ChoosePong I'll be long
+ChoosePong I'll be strong
+ChoosePong I'll be wong
+ChoosePong I want pong
+ChoosePong I want bong
+ChoosePong I want dong
+ChoosePong I want hong
+ChoosePong I want gong
+ChoosePong I want song
+ChoosePong I want long
+ChoosePong I want strong
+ChoosePong I want wong

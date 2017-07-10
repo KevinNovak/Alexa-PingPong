@@ -1,0 +1,6 @@
+ChooseSide {side}
+ChooseSide I choose {side}
+ChooseSide I pick {side}
+ChooseSide I want to be {side}
+ChooseSide I'll be {side}
+ChooseSide I want {side}
