@@ -1,10 +1,10 @@
 {
   "intents": [
     {
-      "intent": "ChoosePing",
+      "intent": "ChoosePing"
     },
     {
-      "intent": "ChoosePong",
+      "intent": "ChoosePong"
     },
     {
       "intent": "AMAZON.YesIntent"
