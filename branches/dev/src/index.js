@@ -26,6 +26,7 @@ var lang = {
     PING: 'Ping!',
     PONG: 'Pong!',
     ALEXA_WINS: 'Nice try!',
+    SCORE: 'You hit the ball {SCORE} times.',
     PLAY_AGAIN: 'Do you want to play again?',
     PLAY_AGAIN_CHOICES: 'Say yes to play again, or no to quit.',
     BYE: 'Alright, I\'m down for a challenge anytime.'
@@ -36,7 +37,7 @@ var newSessionHandlers = {
         this.handler.state = states.STARTMODE;
         this.emit(':ask', lang.WELCOME + " " + lang.PROMPT_START, lang.PROMPT_START_CHOICES);
     },
-    'SessionEndedRequest': function () {
+    'SessionEndedRequest': function() {
         console.log('Session ended!');
         this.emit(':tell', lang.BYE);
     },
@@ -62,7 +63,7 @@ var startModeHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
     "AMAZON.StopIntent": function() {
         this.emit(':tell', lang.BYE);
     },
-    'SessionEndedRequest': function () {
+    'SessionEndedRequest': function() {
         console.log('Session ended!');
         this.emit(':tell', lang.BYE);
     },
@@ -76,13 +77,15 @@ var sideModeHandlers = Alexa.CreateStateHandler(states.SIDEMODE, {
         this.emit('NewSession'); // Uses the handler in newSessionHandlers
     },
     'ChoosePing': function() {
-    	this.attributes["side"] = 'ping';
-    	this.handler.state = states.PLAYMODE;
+        this.attributes["swings"] = 0;
+        this.attributes["side"] = 'ping';
+        this.handler.state = states.PLAYMODE;
         this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PONG);
     },
     'ChoosePong': function() {
-    	this.attributes["side"] = 'pong';
-    	this.handler.state = states.PLAYMODE;
+        this.attributes["swings"] = 0;
+        this.attributes["side"] = 'pong';
+        this.handler.state = states.PLAYMODE;
         this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PING);
     },
     'AMAZON.HelpIntent': function() {
@@ -91,7 +94,7 @@ var sideModeHandlers = Alexa.CreateStateHandler(states.SIDEMODE, {
     "AMAZON.StopIntent": function() {
         this.emit(':tell', lang.BYE);
     },
-    'SessionEndedRequest': function () {
+    'SessionEndedRequest': function() {
         console.log('Session ended!');
         this.emit(':tell', lang.BYE);
     },
@@ -105,33 +108,38 @@ var playModeHandlers = Alexa.CreateStateHandler(states.PLAYMODE, {
         this.emit('NewSession'); // Uses the handler in newSessionHandlers
     },
     'ChoosePing': function() {
-    	var side = this.attributes["side"];
-    	if (side != 'ping') {
-			this.handler.state = states.ENDMODE;
-            this.emit(':ask', lang.ALEXA_WINS + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
-    	} else {
-			this.emit(':ask', lang.PONG);
-    	}
+        var side = this.attributes["side"];
+        if (side != 'ping') {
+            this.handler.state = states.ENDMODE;
+            var scoreSpeech = lang.SCORE.replace("{SCORE}", this.attributes["swings"]);
+            this.emit(':ask', lang.ALEXA_WINS + " " + scoreSpeech + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
+        } else {
+            this.attributes["swings"] = this.attributes["swings"] + 1;
+            this.emit(':ask', lang.PONG);
+        }
     },
     'ChoosePong': function() {
-    	var side = this.attributes["side"];
-    	if (side != 'pong') {
-			this.handler.state = states.ENDMODE;
-            this.emit(':ask', lang.ALEXA_WINS + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
-    	} else {
-			this.emit(':ask', lang.PING);
-    	}
+        var side = this.attributes["side"];
+        if (side != 'pong') {
+            this.handler.state = states.ENDMODE;
+            var scoreSpeech = lang.SCORE.replace("{SCORE}", this.attributes["swings"]);
+            this.emit(':ask', lang.ALEXA_WINS + " " + scoreSpeech + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
+        } else {
+            this.attributes["swings"] = this.attributes["swings"] + 1;
+            this.emit(':ask', lang.PING);
+        }
     },
     "AMAZON.StopIntent": function() {
         this.emit(':tell', lang.BYE);
     },
-    'SessionEndedRequest': function () {
+    'SessionEndedRequest': function() {
         console.log('Session ended!');
         this.emit(':tell', lang.BYE);
     },
     'Unhandled': function() {
         this.handler.state = states.ENDMODE;
-        this.emit(':ask', lang.ALEXA_WINS + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
+        var scoreSpeech = lang.SCORE.replace("{SCORE}", this.attributes["swings"]);
+        this.emit(':ask', lang.ALEXA_WINS + " " + scoreSpeech + " " + lang.PLAY_AGAIN, lang.PLAY_AGAIN_CHOICES);
     }
 });
 
@@ -152,7 +160,7 @@ var endModeHandlers = Alexa.CreateStateHandler(states.ENDMODE, {
     "AMAZON.StopIntent": function() {
         this.emit(':tell', lang.BYE);
     },
-    'SessionEndedRequest': function () {
+    'SessionEndedRequest': function() {
         console.log('Session ended!');
         this.emit(':tell', lang.BYE);
     },
