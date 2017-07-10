@@ -77,10 +77,12 @@ var sideModeHandlers = Alexa.CreateStateHandler(states.SIDEMODE, {
     },
     'ChoosePing': function() {
     	this.attributes["side"] = 'ping';
+    	this.handler.state = states.PLAYMODE;
         this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PONG);
     },
     'ChoosePong': function() {
     	this.attributes["side"] = 'pong';
+    	this.handler.state = states.PLAYMODE;
         this.emit(':ask', lang.SIDE_CHOSEN + " " + lang.PING);
     },
     'AMAZON.HelpIntent': function() {
